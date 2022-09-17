@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node"
+  },
+  "include": ["./vite.config.ts", "src/**/*"],
+  "exclude": ["examples", "index.d.ts", "node_modules", "dist"]
+}
