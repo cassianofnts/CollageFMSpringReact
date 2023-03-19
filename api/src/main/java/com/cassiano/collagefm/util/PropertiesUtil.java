@@ -14,7 +14,7 @@ public class PropertiesUtil {
         InputStream configFile;
 
             try {
-                configFile = new FileInputStream(new File("C:\\Users\\cassiano\\Desktop\\collagefm\\api\\src\\main\\java\\com\\cassiano\\collagefm\\properties\\application.properties"));
+                configFile = new FileInputStream(new File("C:\\Users\\cassiano\\Desktop\\CollageFMSpringReact\\api\\src\\main\\java\\com\\cassiano\\collagefm\\properties\\application.properties"));
                 properties.load(configFile);
                 var value = properties.get(key);
                 configFile.close();
