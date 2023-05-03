@@ -63,7 +63,7 @@ public class Imagens {
             }
         }
 
-        File arquivo = new File("C:\\Users\\cassiano\\Desktop\\CollageFMSpringReact\\api\\src\\main\\java\\resources\\output", usuario+".png");
+        File arquivo = new File("./api/src/images", usuario+".png");
         arquivo.mkdir();
 
         try {
