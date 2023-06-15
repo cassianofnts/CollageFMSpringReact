@@ -11,7 +11,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.ArrayList;
 
@@ -38,15 +37,13 @@ public class Imagens {
 
             return imgNova;
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static void generateCollage(ArrayList<Album> listaDeAlbuns, String usuario) {
+    public static String generateCollage(ArrayList<Album> listaDeAlbuns, String usuario) {
         BufferedImage collage = new BufferedImage(1500, 1500, BufferedImage.TRANSLUCENT);
         Graphics2D graphics = collage.createGraphics();
         var largura = 0;
@@ -63,13 +60,15 @@ public class Imagens {
             }
         }
 
-        File arquivo = new File("./api/src/images", usuario+".png");
-        arquivo.mkdir();
+        File arquivo = new File("../api/src/images", usuario+".png");
+        var fileCreated = arquivo.mkdir();
 
         try {
             ImageIO.write(collage, "png", arquivo);
+            return arquivo.getAbsolutePath();
         } catch (IOException e) {
             e.printStackTrace();
+            return e.getLocalizedMessage();
         }
 
     }

@@ -11,6 +11,5 @@ public class Album {
     private String artistName;
     private String coverImage;
     private String albumUrl;
-    //private BufferedImage infoImage;
 
 }

@@ -22,7 +22,7 @@ class FormSubmit extends React.Component {
       'Content-Type': 'application/json' ,
     }
     axios
-      .post('http://localhost:8080/collage', body, { headers })
+      .post('http://localhost:8080/api/collage', body, { headers })
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   }
