@@ -8,7 +8,6 @@ import com.cassiano.collagefm.util.PropertiesUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -25,18 +24,16 @@ public class CollageFmService {
     }
 
     public ResponseEntity<String> getTopAlbums(UserRequest user){
-        var method = "?method=user.gettopalbums&";
+        var method = "?method=user.gettopalbums";
         var format = "&format=json";
         var uri = getLastFmApiRoot()+method+format+"&api_key="+ getLastFmKey()+user.getFormatedParams();
         RestTemplate restTemplate = new RestTemplate();
-
-        System.out.println(uri);
 
         try {
             ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
             if(response.getStatusCode() == HttpStatus.OK){
                 ArrayList<Album> albunsList = JsonHandler.jsonAlbuns(response.getBody());
-                String caminho = Imagens.generateCollage(albunsList, user.getUsername());
+                Imagens.generateCollage(albunsList, user.getUsername(), user.getLimit());
 
             }
             return ResponseEntity.ok().build();

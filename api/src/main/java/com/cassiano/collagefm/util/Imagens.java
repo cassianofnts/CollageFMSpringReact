@@ -43,25 +43,39 @@ public class Imagens {
         return null;
     }
 
-    public static String generateCollage(ArrayList<Album> listaDeAlbuns, String usuario) {
-        BufferedImage collage = new BufferedImage(1500, 1500, BufferedImage.TRANSLUCENT);
-        Graphics2D graphics = collage.createGraphics();
+    public static String generateCollage(ArrayList<Album> listaDeAlbuns, String usuario, Integer limit) {
         var largura = 0;
         var altura = 0;
+
+        int larguraMax = 0;
+        int alturaMax;
+
+        if(limit == 9)
+            larguraMax = 900;
+        else if(limit ==16)
+            larguraMax = 1200;
+        else
+            larguraMax = 1500;
+
+        alturaMax = larguraMax;
+
+        BufferedImage collage = new BufferedImage(larguraMax, alturaMax, BufferedImage.TRANSLUCENT);
+        Graphics2D graphics = collage.createGraphics();
+        graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON));
 
         for(Album album : listaDeAlbuns){
 
             graphics.drawImage(geraImagemAlbum(album), largura, altura, null);
             largura += 300;
             
-            if (largura == 1500){
+            if (largura == larguraMax){
                 largura = 0;
                 altura += 300;
             }
         }
 
         File arquivo = new File("../api/src/images", usuario+".png");
-        var fileCreated = arquivo.mkdir();
+        arquivo.mkdir();
 
         try {
             ImageIO.write(collage, "png", arquivo);

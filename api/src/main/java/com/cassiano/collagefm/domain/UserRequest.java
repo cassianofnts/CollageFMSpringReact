@@ -13,6 +13,7 @@ public class UserRequest {
     private String username;
     @JsonProperty("period")
     private String period;
+    @Getter
     @JsonProperty("limit")
     private Integer limit;
 
