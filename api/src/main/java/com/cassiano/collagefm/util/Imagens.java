@@ -46,6 +46,7 @@ public class Imagens {
     public static String generateCollage(ArrayList<Album> listaDeAlbuns, String usuario, Integer limit) {
         var largura = 0;
         var altura = 0;
+        var currentPath = System.getProperty("user.dir");
 
         int larguraMax = 0;
         int alturaMax;
@@ -73,8 +74,8 @@ public class Imagens {
                 altura += 300;
             }
         }
-
-        File arquivo = new File("../api/src/images", usuario+".png");
+        System.out.println();
+        File arquivo = new File(currentPath +"/api/src/images", usuario+".png");
         arquivo.mkdir();
 
         try {
